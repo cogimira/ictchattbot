@@ -1,0 +1,12 @@
+{
+  "name": "chatterbotictweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "copy": "docker cp /Users/huaiyaowang/why/sidework/chatterbotictweb d15032ecef44:/www/"
+  },
+  "author": "",
+  "license": "ISC"
+}

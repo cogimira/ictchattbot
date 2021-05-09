@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>聊天机器人</title>
+</head>
+<script type="text/javascript" src="../static/jquery.min.js"></script>
+<style>
+.chat-body, body{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    overflow: hidden;
+}
+.msg-body {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    background: white;
+    left: 0;
+    top: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.input-body {
+    position: absolute;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    bottom: 0;
+    left: 0;
+}
+.input {
+    width: 80%;
+    height: 100%;
+    background: #b7afa0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rect-body {
+    width: 96%;
+    height: 86%;
+    border-radius: 10px;
+}
+.submit-btn {
+    width: 20%;
+    height: 100%;
+    background: yellow;
+}
+.input-rect {
+    border: 1px solid gray;
+    border: none;
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+    vertical-align: c;
+    border-radius: 10px;
+}
+.submit-btn {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: #156984;
+    /* border-radius: 10px; */
+    color: white;
+}
+.send-btn {
+    font-size: 32px;
+    
+}
+.words-row {
+    font-size: 20px;
+    margin-top: 30px;
+    width: 50%;
+    height: auto;
+    padding: 10px 0px 10px 0px;
+    border-radius: 10px;
+   
+}
+.divRow {
+    /* position: relative;
+    display: flex; */
+}
+.myWordsRow-c {
+    /* justify-content: center;
+    align-items: center; */
+}
+.heWordsRow-c {
+    justify-content: center;
+    align-items: center;
+}
+.myWordsRow {
+    background: #1859ad;
+    color: white;
+    /* text-align: right; */
+    text-indent: 10px;
+}
+.heWordsRow {
+    background: #d8d2d2;
+    color: #5f5656;
+    /* text-align: left; */
+    text-indent: 10px;
+}
+</style>
+<body>
+<div class="chat-body">
+    <div class="msg-body" id="msg-body">
+        
+    </div>
+    <div class="input-body">
+        <div class="input">
+            <div class="rect-body">
+                <input type="text" class="input-rect" id="input-rect"/>
+            </div>
+        </div>
+        <div class="submit-btn" id="sendBtn">
+            <div class="send-btn">
+                发送
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../static/chat.js"></script>
+<script>
+    function wordsRow(text, whitch) {
+        var divRow = document.createElement('div');
+        divRow.setAttribute('class', 'divRow ' + whitch + "-c");
+        var divInner = document.createElement('div');
+        var div = document.createElement('p');
+        div.setAttribute('class', whitch + ' words-row');
+        div.innerText = text;
+        // divInner.appendChild(div);
+        // divRow.appendChild(divInner);
+        document.getElementById('msg-body').appendChild(div);
+    }
+    $(function() {
+        $('#sendBtn').click(() => {
+            var words = $('#input-rect').val();
+            if(words && words.trim()) {
+                var newWords = words.trim();
+                wordsRow(newWords, 'myWordsRow');
+                $.get("/api/res?words=" + encodeURI(newWords), function(data){
+                        wordsRow(data, 'heWordsRow');
+                        var scrollBody = document.getElementById('msg-body');
+                        scrollBody.scroll(0, scrollBody.scrollHeight)
+                        $('#input-rect').val('');
+                });
+            }
+        });
+    });
+</script>
+</html>
