@@ -21,8 +21,8 @@ from . import views
 from . import chatterbot
  
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    url(r'^api/test$', views.hello),
-    url(r'^api/res$', chatterbot.getRes),
-    path('chatter/', views.runoob),
+    path('chatterbot/admin/', admin.site.urls),
+    url(r'^chatterbot/api/test$', views.hello),
+    url(r'^chatterbot/api/res$', chatterbot.getRes),
+    path('chatterbot/', views.runoob),
 ]

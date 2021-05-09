@@ -144,7 +144,7 @@
             if(words && words.trim()) {
                 var newWords = words.trim();
                 wordsRow(newWords, 'myWordsRow');
-                $.get("/api/res?words=" + encodeURI(newWords), function(data){
+                $.get("/chatterbot/api/res?words=" + encodeURI(newWords), function(data){
                         wordsRow(data, 'heWordsRow');
                         var scrollBody = document.getElementById('msg-body');
                         scrollBody.scroll(0, scrollBody.scrollHeight)
