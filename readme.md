@@ -110,7 +110,9 @@ http://127.0.0.1:3000/chatterbot/
 
 > 运行下面的命令
 
- ```cd /var/www/ictchattbot && git pull && docker cp /var/www/ictchattbot 62471f686883:/www/ && docker stop 62471f686883 && docker restart 62471f686883 && docker exec -it 62471f686883  /bin/bash  -c  'cd /www/ictchattbot && python manage.py runserver 0.0.0.0:7777'```
+ ```
+ cd /var/www/ictchattbot && git pull && docker cp /var/www/ictchattbot 62471f686883:/www/ && docker stop 62471f686883 && docker restart 62471f686883 && docker exec -it 62471f686883  /bin/bash  -c  'cd /www/ictchattbot && python manage.py runserver 0.0.0.0:7777'
+ ```
 
 > 访问地址
 
